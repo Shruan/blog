@@ -1,8 +1,8 @@
 # notes
 保存一些平时遇到的问题及查询到解决方案
 
-###使用vue+webpack打包遇到icon小图标路径问题不显示图标问题  
-#####解决方法如下：
+### 使用vue+webpack打包遇到icon小图标路径问题不显示图标问题  
+##### 解决方法如下：
 >在build目录下新建一个cssPathResolver.js，内容如下：
 
 module.exports = function (source) {　　  
