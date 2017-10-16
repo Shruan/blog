@@ -24,21 +24,23 @@
    // 拾取url后面带的参数 如a.html?key=aaaa&name=1232
    // 调用方式 var Request=new urlCatch(); //实例化
    // alert(Request.wd);
-   urlCatch() {
+   urlCatch: function () {
      var name , value;
+     var obj = {}
      var str = location.href; // 取得整个地址栏
      var num = str.indexOf("?")
-     str = str.substr(num+1); // 取得所有参数   stringvar.substr(start [, length ]
+     str = str.substr(num + 1); // 取得所有参数   stringvar.substr(start [, length ]
 
      var arr = str.split("&"); // 各个参数放到数组里
      for (var i = 0; i < arr.length; i++) {
        num = arr[i].indexOf("=");
        if (num > 0) {
-         name = arr[i].substring(0,num);
+         name = arr[i].substring(0, num);
          value = arr[i].substr(num + 1);
-         this[name] = value;
+         obj[name] = value;
        }
      }
+     return obj
    }
 
  }
