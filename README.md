@@ -1,8 +1,10 @@
 # notes
 保存一些平时遇到的问题及查询到解决方案
 
-
-
+###  mac 新版本谷歌浏览器 跨域指令
+<pre><code>
+  open -n /Applications/Google\ Chrome.app/ --args --disable-web-security  --user-data-dir=/Users/qiushiyuan/MyChromeDevUserData/
+</pre></code>
 ### img和background的区别
 >图片的展示方式有两种，一种是以图片标签显示，一种是以背景图片显示。  
 
@@ -15,7 +17,8 @@
 ### 使用vue+webpack打包遇到icon小图标路径问题不显示图标问题  
 ##### 解决方法如下：
 >在build目录下新建一个cssPathResolver.js，内容如下：
-<pre><code>
+
+``` javascript
 module.exports = function (source) {　　  
 　　if (process.env.NODE_ENV === 'production') {    
 　　　　return source.replace('__webpack_public_path__ + "static', '"..')  
@@ -23,10 +26,11 @@ module.exports = function (source) {　　
 　　　　return source  
 　　}  
 }   
-</pre></code>
+```
 
 >loader要用在被css引入的资源上，而不是css，在webpack.base.conf.js里面修改下，例如在我的项目里是为了解决iconfont路径不对的问题，我是这样用的：
-<pre><code>
+
+``` javascript
 ｛  
 　　test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,  
 　　loaders: [  
@@ -42,4 +46,4 @@ module.exports = function (source) {　　
 　　　}  
 　　]  
  }
-</pre></code>
+```
