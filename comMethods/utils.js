@@ -41,8 +41,8 @@
        }
      }
      return obj
-   }
-
+   },
+   // 加入收藏夹方法
   addFavorite: function () {
      var url = window.location;
      var title = document.title;
@@ -62,5 +62,15 @@
      } else {
        alert('您的浏览器不支持,请按 Ctrl+D 手动收藏!');
      }
+   },
+   // 监听键盘回车事件
+   enterKeyDown: function () {
+     window.document.onkeydown = (function (event) {
+       console.log(this)
+       var e = event || window.event
+       if (e && e.keyCode == 13) { // 回车键的键值为13
+         this.seach()
+       }
+     }).bind(this)
    }
  }
