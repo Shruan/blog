@@ -1,6 +1,8 @@
 # notes
 保存一些平时遇到的问题及查询到解决方案
 
+[weex相关记录](./weexNotes/README.md)
+
 ###  mac 新版本谷歌浏览器 跨域指令
 <pre><code>
   open -n /Applications/Google\ Chrome.app/ --args --disable-web-security  --user-data-dir=/Users/qiushiyuan/MyChromeDevUserData/
