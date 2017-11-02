@@ -1,7 +1,7 @@
 # notes
 保存一些平时遇到的问题及查询到解决方案
 
-[weex相关记录](./weexNotes/README.md)
+[weex相关记录](./weexNotes/README.md) [CSS相关记录](./css/README.md)
 
 ###  mac 新版本谷歌浏览器 跨域指令
 <pre><code>
