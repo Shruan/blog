@@ -1,60 +1,36 @@
-# notes
-保存一些平时遇到的问题及查询到解决方案
+# HTTP相关记录
 
-[weex相关记录](./weexNotes/README.md) [CSS相关记录](./css/README.md)
+### POST 与 GET 区别
 
-###  mac 新版本谷歌浏览器 跨域指令
-<pre><code>
-  open -n /Applications/Google\ Chrome.app/ --args --disable-web-security  --user-data-dir=/Users/qiushiyuan/MyChromeDevUserData/
-</pre></code>
+##### 表层上的区别：  
+> 1、GET在浏览器回退时是无害的，而POST会再次提交请求。  
+  2、GET产生的URL地址可以被Bookmark，而POST不可以。  
+  3、GET请求会被浏览器主动cache，而POST不会，除非手动设置。  
+  4、GET请求只能进行url编码，而POST支持多种编码方式。  
+  5、GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会被保留。  
+  6、GET请求在URL中传送的参数是有长度限制的，而POST么有。  
+  7、对参数的数据类型，GET只接受ASCII字符，而POST没有限制。  
+  8、GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息。  
+  9、GET参数通过URL传递，POST放在Request body中。  
+  （本标准答案参考自w3schools）
 
-### weex create 构建项目 修改webpack 自定义入口文件
-> src里新建一个entry.js，entry.js为入口，文件名随便取
+##### HTTP协议：
+> HTTP是基于TCP/IP的关于数据如何在万维网中如何通信的协议。
 
->webpack.config.js找到
-const entry = {} 这里配置入口 const entry =pathTo.resolve('./src/entry.js');
+> GET和POST的底层也是TCP/IP.即GET和POST在本质上是一致的，都是TCP/IP协议。
 
->同理
-const weexEntry = pathTo.resolve('./src/entry.js');
-### img和background的区别
->图片的展示方式有两种，一种是以图片标签显示，一种是以背景图片显示。  
+##### 业内不成文规定：
+> 1、（大多数）浏览器通常都会限制url长度在2K个字节，而（大多数）服务器最多处理64K大小的url。  
+  2、
 
->img：html中的标签img是网页结构的一部分会在加载结构的过程中和其他标签一起加载。  
+###### GET和POST本质上就是TCP链接，并无差别。但是由于HTTP的规定和浏览器/服务器的限制，导致他们在应用过程中体现出一些不同
 
->background：以css背景图存在的图片background会等到结构加载完成（网页的内容全部显示以后）才开始加载也就是说，网页会先加载标签img的内容，再加载背景图片background引用的图片。  
+#### 本质区别
+GET产生一个TCP数据包；POST产生两个TCP数据包。
+> GET方式的请求，浏览器会把http header和data一并发送出去，服务器响应200（返回数据）  
+而POST，浏览器先发送header，服务器响应100 continue，浏览器再发送data，服务器响应200 ok（返回数据）。
 
->引入一张图片，那么在这个图片加载完成之前，img后的内容不会显示。而用background来引入同样的图片，网页结构和内容加载完成之后，才开始加载背景图片，网页内容能正常浏览，但是看不到背景图片。至于这两种，大家按照习惯，需求等权重因素选择！不太重要的图片用背景来加载，重要的图片要用img优先加载。
-
-### 使用vue+webpack打包遇到icon小图标路径问题不显示图标问题  
-##### 解决方法如下：
->在build目录下新建一个cssPathResolver.js，内容如下：
-
-``` javascript
-module.exports = function (source) {　　  
-　　if (process.env.NODE_ENV === 'production') {    
-　　　　return source.replace('__webpack_public_path__ + "static', '"..')  
-　　} else {  
-　　　　return source  
-　　}  
-}   
-```
-
->loader要用在被css引入的资源上，而不是css，在webpack.base.conf.js里面修改下，例如在我的项目里是为了解决iconfont路径不对的问题，我是这样用的：
-
-``` javascript
-｛  
-　　test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,  
-　　loaders: [  
-　　{  
-　　　　loader: path.resolve(__dirname, 'cssPathResolver')  
-　　},  
-　　{  
-　　　　loader: 'url-loader',  
-　　　　query: {  
-　　　　　　limit: 10000,  
-　　　　　　name: utils.assetsPath('icons/[name].[hash:7].[ext]')
-　　　　}  
-　　　}  
-　　]  
- }
-```
+#### 总结
+> 1、因为POST需要两步，时间上消耗的要多一点，看起来GET比POST更有效。因此Yahoo团队有推荐用GET替换POST来优化网站性能。  
+ 2、 据研究，在网络环境好的情况下，发一次包的时间和发两次包的时间差别基本可以无视。而在网络环境差的情况下，两次包的TCP在验证数据包完整性上，有非常大的优点。
+ 3、 并不是所有浏览器都会在POST中发送两次包，Firefox就只发送一次。
