@@ -26,3 +26,6 @@ template文件路径 ：
   <pre><code>
     chmod a+x ~/Library/Android/sdk/tools/templates/gradle/wrapper/gradlew
   </pre></code>
+
+
+ outputFileName = "${variant.name}-${variant.versionName}.apk"
