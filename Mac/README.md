@@ -59,3 +59,20 @@ use mysql                    进入mysql数据库
 flush privileges;
 set password for 'root'@'localhost'=password('新密码');
 ```
+
+## PHP 7 
+#### php.ini 配置
+除下面配置语句的注释 ”;”
+
+  > extension=php_mysqli.dll
+
+这样仍然无法找到mysqli的类，还需要让php.exe能找到扩展文件
+所有的默认扩展都在php目录下的ext目录下，php.ini中有一段配置，去掉注释”;”  
+
+```
+; Directory in which the loadable extensions (modules) reside.
+; http://php.net/extension-dir
+; extension_dir = "./"
+; On windows:
+extension_dir = "ext"
+```
