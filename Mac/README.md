@@ -42,3 +42,20 @@ DocumentRoot "/Users/qiushiyuan/Sites"          ---修改后的路径
     Require all granted
 </Directory>
 ```
+
+## MYSQL 基本命令
+#### 重置root密码
+1.关闭MySQL  
+> 系统偏好设置->MySQL->Stop MySQL Server  
+
+2.启动MySQL  
+> 打开终端：sudo /usr/local/mysql/bin/mysqld_safe --skip-grant-tables
+点击回车，MySQL会自动开启  
+
+3.设置新密码
+```
+/usr/local/mysql/bin/mysql   进入mysql命令模式
+use mysql                    进入mysql数据库
+flush privileges;
+set password for 'root'@'localhost'=password('新密码');
+```
