@@ -10,7 +10,10 @@
 DocumentRoot "/Users/qiushiyuan/Sites"          ---修改后的路径
 <Directory "/Users/qiushiyuan/Sites">  
 ```
-3 、 打开 (LoadModule php7_module libexec/apache2/libphp7.so)  
+3 、 开启相关配置   
+> LoadModule userdir_module libexec/apache2/mod_userdir.so  
+> LoadModule php7_module libexec/apache2/libphp7.so  
+
 4 、 在 Options FollowSymLinks Multiviews 后添加 Indexes  
 
 >即 Options FollowSymLinks Multiviews Indexes  
