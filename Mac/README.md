@@ -2,6 +2,21 @@
 
 ## apache2配置
 > mac自带了php运行环境，预装php,apache，打开终端，输入sudo apachectl start，浏览器输入localhost，如果能显示“It Works!”，那就work了。
+#### 基本命令  
+查看apache版本 指令
+> sudo apachectl -v  
+> sudo httpd -v  
+
+启动Apache服务
+> sudo apachectl start
+
+重新启动Apache服务  
+
+> sudo apachectl restart  
+
+关闭Apache服务  
+
+> sudo apachectl stop
 #### 本地仓库路径修改
 1 、 vi /etc/apache2/httpd.conf  
 2 、 修改文件配置：  
