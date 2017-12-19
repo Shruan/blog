@@ -15,6 +15,15 @@ const weexEntry = pathTo.resolve('./src/entry.js');
 > text类型请求，返回的数据是json类型，在app上需通过json.parse（res）转换后方可使用，
 >而使用axios发送的form类型请求，返回数据在web上无需转换可以直接使用
 
+### weex使用stream模块发送'Get'请求存在的问题
+> 若发送get请求时，url上的字段值带中文汉子，在浏览器上会将url自动调用encodeURI()将url中字符串作为URI进行编码  
+
+> 而app端则需要自己手动调用encodeURI()进行编码，否则会因中文为转行格式导致发送请求出错
+```
+let url = this.apiUrl + '/XXXX?keyWord=搜索'
+url = encodeURI(url)
+```
+
 ### 判断当前使用的平台
 ``` javascript
   if (WXEnvironment.platform == 'Web') {
