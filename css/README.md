@@ -1,7 +1,8 @@
 # CSS
 ### css-icon
+
 ##### 关闭图标
-<pre><code>
+``` css
   .close {
     position: relative;
     display: inline-block;
@@ -26,10 +27,11 @@
     border-top: 1px solid #ddd;
     transform: rotate(-45deg);
   }
-</pre></code>
+```
+
 ##### 箭头图标
->右箭头
-<pre><code>
+``` css
+/* 右箭头 */
   .rightArrow {
     display: inline-block;
     width: 8px;
@@ -38,9 +40,9 @@
     border-right: 1px solid #ddd;
     transform: rotate(45deg);
   }
-</pre></code>
->左箭头
-<pre><code>
+```
+``` css
+/* 左箭头 */
   .leftArrow {
     display: inline-block;
     width: 8px;
@@ -49,9 +51,9 @@
     border-left: 1px solid #ddd;
     transform: rotate(45deg);
   }
-</pre></code>
->下箭头
-<pre><code>
+```
+``` css
+/* 下箭头 */
   .bottomArrow {
     display: inline-block;
     width: 8px;
@@ -60,9 +62,9 @@
     border-bottom: 1px solid #ddd;
     transform: rotate(45deg);
   }
-</pre></code>
->上箭头
-<pre><code>
+```
+``` css
+/* 上箭头 */
   .topArrow {
     display: inline-block;
     width: 8px;
@@ -71,10 +73,10 @@
     border-left: 1px solid #ddd;
     transform: rotate(45deg);
   }
-</pre></code>
+```
 ##### 三角形
->下三角
-<pre><code>
+``` css
+/* 下三角 */
   .bottomTriangle {
     position: relative;
     display: inline-block;
@@ -92,9 +94,10 @@
     border-bottom: 4px solid transparent;
     border-left: 4px solid transparent;
   }
-</pre></code>
->上三角
-<pre><code>
+```
+
+``` css
+/* 上三角 */
   .topTriangle {
     position: relative;
     display: inline-block;
@@ -112,9 +115,10 @@
     border-bottom: 4px solid #ddd;
     border-left: 4px solid transparent;
   }
-</pre></code>
->右三角
-<pre><code>
+```
+
+``` css
+/* 右三角 */
   .rightTriangle {
     position: relative;
     display: inline-block;
@@ -132,9 +136,10 @@
     border-bottom: 4px solid transparent;
     border-left: 4px solid #ddd;
   }
-</pre></code>
->左三角
-<pre><code>
+```
+
+``` css
+/* 左三角 */
   .leftTriangle {
     position: relative;
     display: inline-block;
@@ -152,4 +157,4 @@
     border-bottom: 4px solid transparent;
     border-left: 4px solid transparent;
   }
-</pre></code>
+```
