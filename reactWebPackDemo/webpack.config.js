@@ -11,5 +11,17 @@ module.exports = {
     host: 'localhost',
     compress: true, // 压缩
     port: 1717
+  },
+  module: {
+    loaders: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loaders: 'babel-loader',
+        query: {
+          presets: ['es2015', 'react']
+        }
+      }
+    ]
   }
 }
