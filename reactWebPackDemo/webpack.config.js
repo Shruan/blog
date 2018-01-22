@@ -1,10 +1,10 @@
 const path = require('path')
 module.exports = {
-  entry: './app/index.js',
+  entry: './app/index.js',  // 打包文件路径
   output: {
-    filename: 'index.js',
+    filename: 'index.js', // 打包输出文件名
     path: path.resolve(__dirname, 'dist'),
-    publicPath: 'temp'
+    publicPath: 'temp'  // 系统内存
   },
   devServer: {
     contentBase: './',  //文件访问基本路径
@@ -19,7 +19,7 @@ module.exports = {
         exclude: /node_modules/,
         loaders: 'babel-loader',
         query: {
-          presets: ['es2015', 'react']
+          presets: ['es2015', 'react']  // 语法
         }
       }
     ]
