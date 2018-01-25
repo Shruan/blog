@@ -53,6 +53,8 @@
 
 
 #### [关于部署](https://www.zhihu.com/question/20790576)
+- 状态码304，让浏览器 使用本地缓存
+
 
 #### [服务端渲染](ssr.vuejs.org)
 
