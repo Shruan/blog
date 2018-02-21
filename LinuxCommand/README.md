@@ -45,7 +45,7 @@ scp -r [服务器用户名]@[服务器地址]:[服务器上存放文件的路径
 scp -r root@192.168.1.1:/root/default/test /Users/mac/Desktop
 </pre></code>
 
-#### apache配置
+#### Apache配置
 - 安装
 <pre><code>
   yum install httpd
