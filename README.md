@@ -5,6 +5,31 @@
 [CSS相关记录](./css/README.md)  
 [Linux服务器相关配置](./LinuxCommand/README.md)
 
+### js 判断对象是否为空的三种方法
+ - for...in...遍历属性，为真则为“非空数组”；否则为“空数组”  
+ ```javascript
+  function judgeObj (obj) {
+    for (var variable in object) {
+      return true
+    }
+    return false
+  }
+ ```
+  - 通过JSON自带的.stringify方法来判断
+  ```javascript
+   if (JSON.stringify(obj) == '{}') {
+     console.log('空')
+   }
+  ```
+  - ES6新增的特效 Object.keys()
+  ```javascript
+   if (Object.keys(obj).length > 0) {
+     console.log('非空')
+   } else {
+     console.log('空')
+   }
+  ```
+
 ###  mac 新版本谷歌浏览器 跨域指令
 <pre><code>
   open -n /Applications/Google\ Chrome.app/ --args --disable-web-security  --user-data-dir=/Users/qiushiyuan/MyChromeDevUserData/
