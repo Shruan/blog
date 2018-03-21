@@ -59,8 +59,15 @@ use mysql                    进入mysql数据库
 flush privileges;
 set password for 'root'@'localhost'=password('新密码');
 ```
+4.配置环境变量
+```
+# vim /etc/profile  // 打开环境变量文件
+export PATH=/usr/local/mysql/bin:$PATH  // 配置mysql环境变量
 
-## PHP 7 
+#source /etc/profile  // 立即生效请运行：
+```
+
+## PHP 7
 #### php.ini 配置
 除下面配置语句的注释 ”;”
 
@@ -75,4 +82,21 @@ set password for 'root'@'localhost'=password('新密码');
 ; extension_dir = "./"
 ; On windows:
 extension_dir = "ext"
+```
+
+#### 配置android 快速开启emulator指令
+```
+# vim /etc/profile  // 打开环境变量文件
+export PATH=/Users/qiushiyuan/Library/Android/sdk/emulator:$PATH
+
+#source /etc/profile  // 立即生效请运行：
+```
+- 使用方式
+```
+emulator -list-avds // 查看模拟设备列表
+
+// 启动某个模拟设备
+emulator @AVD_name
+emulator @Pixel_API_23
+emulator -avd @Pixel_API_23
 ```
