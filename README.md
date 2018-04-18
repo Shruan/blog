@@ -5,6 +5,13 @@
 [CSS相关记录](./css/README.md)  
 [Linux服务器相关配置](./LinuxCommand/README.md)
 
+### cnpm使用
+> 安装cnpm   
+$ npm install -g cnpm --registry=https://registry.npm.taobao.org
+
+> cnpm免安装使用
+$ npm install vant --save --registry=https://registry.npm.taobao.org
+
 ### js 判断对象是否为空的三种方法
  - for...in...遍历属性，为真则为“非空数组”；否则为“空数组”  
  ```javascript
