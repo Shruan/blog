@@ -1,5 +1,5 @@
 # notes
-保存一些平时遇到的问题及查询到解决方案
+保存一些平时遇到的问题及整理的解决方案
 
 [weex相关记录](./weex-notes/README.md)   
 [CSS相关记录](./web-notes/css/README.md)  
