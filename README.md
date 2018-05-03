@@ -1,9 +1,9 @@
 # notes
 保存一些平时遇到的问题及查询到解决方案
 
-[weex相关记录](./weexNotes/README.md)   
-[CSS相关记录](./css/README.md)  
-[Linux服务器相关配置](./LinuxCommand/README.md)
+[weex相关记录](./weex-notes/README.md)   
+[CSS相关记录](./web-notes/css/README.md)  
+[Linux服务器相关配置](./Linux、Mac/Linux.md)
 
 ### cnpm使用
 > 安装cnpm   
