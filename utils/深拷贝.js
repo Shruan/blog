@@ -11,18 +11,18 @@ const jsonCopy = function (obj) { // 缺点无法拷贝,函数,和日期,undefin
 }
 /* 任意数据拷贝 */
 const deepCopy = function (data) {
-  var target  //不能使用let 因为无法先声明在赋值
-  if (!(data instanceof Object)) { //返回基本类型
+  var target // 不能使用let 因为无法先声明在赋值
+  if (!(data instanceof Object)) { // 返回基本类型
     return data
-  } else if( data instanceof Array) {
+  } else if (data instanceof Array) {
     target = []
-  } else if( data instanceof Function) {
-    target = eval(data)
   } else if (data instanceof Object) {
     target = {}
+  } else if( data instanceof Function) {
+    target = eval(data)
   }
   for (let key in data) {
-    target[key] = deepCopy(obj[key])
+    target[key] = deepCopy(data[key])
   }
   return target
 }
