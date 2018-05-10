@@ -31,5 +31,16 @@ export const shy_unique {
       return idArr.indexOf(item.id) !== -1
     })
     return newArr
+  },
+  /* 复杂数组比较去重 */
+  // 简单数组 isContained([1, 2, 3], [1,2])
+  isContained: function (a, b) {
+    if (!(a instanceof Array) || !(b instanceof Array)) return false
+    if (a.length < b.length) return false
+    var aStr = a.toString()
+    for (var i = 0, len = b.length; i < len; i++) {
+      if (aStr.indexOf(b[i]) === -1) return false
+    }
+    return true
   }
 }
