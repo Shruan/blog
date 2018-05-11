@@ -1,3 +1,5 @@
+/* 简单实现promise */
+
 function Pm (fn) {
   var events = []
   var errorEvents = []
@@ -25,6 +27,9 @@ function Pm (fn) {
   fn(resolve, reject)
 }
 
+export default Pm
+
+
 function test (isTrue = true) {
   return new Pm(function (resolve, reject) {
     console.log("get...")
@@ -49,8 +54,6 @@ test().then(function (value, resolve) {
 }).then(function (value, resolve) {
   console.log(value)
 })
-
-export default Pm
 
 // ——————————————————————————————————————————
 // var pro = new P(function (resolve) {
