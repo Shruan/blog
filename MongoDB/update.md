@@ -66,9 +66,9 @@ db.集合.update(条件, 修改数据, 配置)
   db.test.update({}, { $set: { interest: [] } }, { upsert: true })
 ```
 
-- $set 追加数组/内嵌文档值 （可以修改嵌套数据）
+- $push 追加数组/内嵌文档值 （可以修改嵌套数据）
 ```javascript
-  db.test.update({"name": "test"}, { $set: {"skill.interest": '学习' }})
+  db.test.update({"name": "test"}, { $push: {"skill.interest": '学习' }})
   // 数据
   {
     name: 'test',
