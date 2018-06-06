@@ -34,3 +34,89 @@
 
   print('[test]print success') //没有错误显示成功
 ```
+- 执行 mongo test.js
+
+#### 批量插入
+```javascript
+  let startTime = (new Date()).getTime()
+  var db = connect('test')
+
+  let arr = []              //声明一个数组
+  for (let i=0; i<1000; i++) {        //循环向数组中放入值
+    arr.push({num: i})
+  }
+  db.test.insert(arr)       //批量一次插入
+
+  let runTime = (new Date()).getTime() - startTime
+  print ('This run this is:'+ runTime +'ms')
+```
+
+#### 更新数据（错误）
+- 基础更新 会覆盖原有数据（存在问题）
+```javascript
+  // 原数据  { name: 'test', sex: 1 }
+  // 新数据  { sex: 0 }
+  var db = connect('company')
+  db.test.update({name: 'test'},{sex: 0})
+
+  print('[update]: The data was updated successfully')
+```
+#### update修改器
+db.集合.update(条件, 修改数据, 配置)
+- $set修改器 （可以修改嵌套数据）
+```javascript
+  // 原数据
+  // {
+  //   name: 'test',
+  //   skill: {
+  //     technology: '小白'
+  //   }
+  // }
+  db.test.update({"name": "test"}, { $set: {"skill.technology": '前端开发' }})
+```
+
+- $unset用于将key删除
+```javascript
+  // 原数据
+  // {
+  //   name: 'test',
+  //   skill: {
+  //     technology: '小白'
+  //   },
+  //   age: 24
+  // }
+  db.test.update({"name": "test"}, { $unset:{"age": ''} })
+  // 新数据
+  // {
+  //   name: 'test',
+  //   skill: {
+  //     technology: '小白'
+  //   }
+  // }
+```
+
+- $inc对数字进行计算
+```javascript
+  // 原数据
+  // {
+  //   name: 'test',
+  //   age: 24
+  // }
+  db.test.update({"name": "test"}, { $inc: {"age": -2} })
+  // 新数据
+  // {
+  //   name: 'test',
+  //   age: 22
+  // }
+  ```
+
+- 配置项——multi选项 （true or false 是否批量更新）
+```javascript
+  db.test.update({}, { $set: { interset: [] } }, { multi: true })
+```
+
+- 配置项——upsert选项 （true or false 是否强制添加）
+<!-- upsert也有两个值：true代表没有就添加，false代表没有不添加(默认值)。 -->
+```javascript
+  db.test.update({}, { $set: { interset: [] } }, { upsert: true })
+```
