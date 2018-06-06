@@ -51,7 +51,7 @@
   print ('This run this is:'+ runTime +'ms')
 ```
 
-#### 更新数据（错误）
+#### 更新数据（错误使用）
 - 基础更新 会覆盖原有数据（存在问题）
 ```javascript
   // 原数据  { name: 'test', sex: 1 }
@@ -60,63 +60,4 @@
   db.test.update({name: 'test'},{sex: 0})
 
   print('[update]: The data was updated successfully')
-```
-#### update修改器
-db.集合.update(条件, 修改数据, 配置)
-- $set修改器 （可以修改嵌套数据）
-```javascript
-  // 原数据
-  // {
-  //   name: 'test',
-  //   skill: {
-  //     technology: '小白'
-  //   }
-  // }
-  db.test.update({"name": "test"}, { $set: {"skill.technology": '前端开发' }})
-```
-
-- $unset用于将key删除
-```javascript
-  // 原数据
-  // {
-  //   name: 'test',
-  //   skill: {
-  //     technology: '小白'
-  //   },
-  //   age: 24
-  // }
-  db.test.update({"name": "test"}, { $unset:{"age": ''} })
-  // 新数据
-  // {
-  //   name: 'test',
-  //   skill: {
-  //     technology: '小白'
-  //   }
-  // }
-```
-
-- $inc对数字进行计算
-```javascript
-  // 原数据
-  // {
-  //   name: 'test',
-  //   age: 24
-  // }
-  db.test.update({"name": "test"}, { $inc: {"age": -2} })
-  // 新数据
-  // {
-  //   name: 'test',
-  //   age: 22
-  // }
-  ```
-
-- 配置项——multi选项 （true or false 是否批量更新）
-```javascript
-  db.test.update({}, { $set: { interset: [] } }, { multi: true })
-```
-
-- 配置项——upsert选项 （true or false 是否强制添加）
-<!-- upsert也有两个值：true代表没有就添加，false代表没有不添加(默认值)。 -->
-```javascript
-  db.test.update({}, { $set: { interset: [] } }, { upsert: true })
 ```
