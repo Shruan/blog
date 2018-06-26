@@ -38,7 +38,7 @@ export const utils = {
 
   // ———————————————————————————————  数据拷贝  —————————————————————————————————————————
   /* 任意数据拷贝 */
-  deepCopy = function (data) {
+  deepCopy: function (data) {
     var target // 不能使用let 因为无法先声明在赋值
     if (!(data instanceof Object)) { // 返回基本类型
       return data
@@ -114,8 +114,8 @@ export const utils = {
   // ———————————————————————————————— URL操作(结束) ————————————————————————————————————————
 
   // ———————————————————————————————— 字符串操作 ————————————————————————————————————————————
-  //删除右边的空格
-  trim (str) {
+  //删除字符串两把的空格
+  trim: function (str) {
     return str.replace(/(^\s*)|(\s*$)/g, '')
   },
 
@@ -136,9 +136,9 @@ export const utils = {
     var url = window.location
     var title = document.title
     var ua = navigator.userAgent.toLowerCase()
-    if (ua.indexOf("360se") > -1) {
-      alert("由于360浏览器功能限制，请按 Ctrl+D 手动收藏！")
-    } else if (ua.indexOf("msie 8") > -1) {
+    if (ua.indexOf('360se') > -1) {
+      alert('由于360浏览器功能限制，请按 Ctrl+D 手动收藏！')
+    } else if (ua.indexOf('msie 8') > -1) {
       window.external.AddToFavoritesBar(url, title) //IE8
     } else if (document.all) {
       try{
@@ -147,7 +147,7 @@ export const utils = {
         alert('您的浏览器不支持,请按 Ctrl+D 手动收藏!')
       }
     } else if (window.sidebar) {
-      window.sidebar.addPanel(title, url, "")
+      window.sidebar.addPanel(title, url, '')
     } else {
       alert('您的浏览器不支持,请按 Ctrl+D 手动收藏!')
     }
