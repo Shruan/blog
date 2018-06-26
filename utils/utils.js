@@ -5,6 +5,7 @@
 */
 
 export const utils = {
+  // ———————————————————————————————— Cookie相关操作 ————————————————————————————————————————
   // cookie 存储、查看、删除
   cookie: {
     set: function (name, value) {
@@ -33,7 +34,29 @@ export const utils = {
       }
     }
   },
+  // —————————————————————————  Cookie相关操作（结束） ———————————————————————————————————
 
+  // ———————————————————————————————  数据拷贝  —————————————————————————————————————————
+  /* 任意数据拷贝 */
+  deepCopy = function (data) {
+    var target // 不能使用let 因为无法先声明在赋值
+    if (!(data instanceof Object)) { // 返回基本类型
+      return data
+    } else if (data instanceof Array) {
+      target = []
+    } else if (data instanceof Object) {
+      target = {}
+    } else if( data instanceof Function) {
+      target = eval(data)
+    }
+    for (let key in data) {
+      target[key] = deepCopy(data[key])
+    }
+    return target
+  },
+  // —————————————————————————————  数据拷贝（结束） ———————————————————————————————————
+
+  // ———————————————————————————————— DOM操作 ————————————————————————————————————————
   // 判断是否有该 class
   hasClass: function (el, className) {
     let reg = new RegExp('(^|\\s)' + className + '(\\s|$)')
@@ -53,7 +76,9 @@ export const utils = {
       el.className = el.className.replace(new RegExp( '(\\s|^)' + className + '(\\s|$)' ), ' ') // replace方法是替换
     }
   },
+  // ———————————————————————————————— DOM操作（结束） —————————————————————————————————
 
+  // ———————————————————————————————— URL操作 ————————————————————————————————————————
   // 拾取url后面带的参数 如a.html?key=aaaa&name=1232
   // 调用方式 var Request=new urlCatch() //实例化
   // alert(Request.wd)
@@ -86,8 +111,27 @@ export const utils = {
       changeData += encodeURIComponent(it) + '=' + encodeURIComponent(data[it])
     }
   }
+  // ———————————————————————————————— URL操作(结束) ————————————————————————————————————————
 
- // 加入收藏夹方法
+  // ———————————————————————————————— 字符串操作 ————————————————————————————————————————————
+  //删除右边的空格
+  trim (str) {
+    return str.replace(/(^\s*)|(\s*$)/g, '')
+  },
+
+  //删除左边的空格
+  ltrim: function (str) {
+    return str.replace(/(^\s*)/g, '')
+　},
+
+  //删除右边的空格
+  rtrim: function (str) {
+    return str.replace(/(\s*$)/g, '')
+  },
+  // ———————————————————————————————— 字符串操作(结束) ————————————————————————————————————————
+
+  // ———————————————————————————————— 其他操作 —————————————————————————————————————————————
+  // 加入收藏夹方法
   addFavorite: function () {
     var url = window.location
     var title = document.title
@@ -119,20 +163,7 @@ export const utils = {
         console.log('onkeydown')
       }
     }).bind(this)
-  },
-
-  //删除右边的空格
-  trim (str) {
-    return str.replace(/(^\s*)|(\s*$)/g, '')
-  },
-
-  //删除左边的空格
-  ltrim: function (str) {
-    return str.replace(/(^\s*)/g, '')
-　},
-
-  //删除右边的空格
-  rtrim: function (str) {
-    return str.replace(/(\s*$)/g, '')
   }
+  // ———————————————————————————————— 其他操作(结束) ————————————————————————————————————————
+
 }
