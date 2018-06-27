@@ -3,7 +3,7 @@ function bubbleSort(arr) {
   let low = 0
   let high = arr.length - 1 // 设置变量的初始值
   let tmp, j
-  console.time('3.改进后冒泡排序耗时')
+  console.time('冒泡排序耗时')
   while (low < high) {
     let pos1 = 0
     let pos2 = 0
@@ -12,7 +12,7 @@ function bubbleSort(arr) {
         tmp = arr[i]
         arr[i] = arr[i + 1]
         arr[i + 1] = tmp
-        pos1 = i
+        pos1 = i  // 最后一次交换的位置
       }
     }
     high = pos1 // 记录上次位置
@@ -21,12 +21,12 @@ function bubbleSort(arr) {
         tmp = arr[j]
         arr[j] = arr[j - 1]
         arr[j - 1] = tmp
-        pos2 = j
+        pos2 = j // 最后一次交换的位置
       }
     }
     low = pos2 //修改low值
   }
-  console.timeEnd('3.改进后冒泡排序耗时')
+  console.timeEnd('冒泡排序耗时')
   return arr
 }
 
