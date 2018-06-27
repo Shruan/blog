@@ -20,15 +20,11 @@ export const shy_unique {
     }
     return newArr
   },
-  /* 复杂数组比较去重 */
-  complexArr: function (arr1, arr2) {
-    let idArr = []
-    let newArr = []
-    for (let val of arr1) {
-      idArr.push(val.id)
-    }
-    newArr = arr2.filter(item => {
-      return idArr.indexOf(item.id) !== -1
+  /* 复杂数组根据唯一值比较去重 */
+  complexArr: function (arr1, arr2, key) {
+    let keyArr = arr1.map(item => item[key])
+    let newArr = arr2.filter(item => {
+      return keyArr.indexOf(item[key]) !== -1
     })
     return newArr
   },
