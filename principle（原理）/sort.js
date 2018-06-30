@@ -1,5 +1,5 @@
 // 冒泡排序
-function bubbleSort(arr) {
+function bubbleSort (arr) {
   let low = 0
   let high = arr.length - 1 // 设置变量的初始值
   let tmp, j
@@ -12,7 +12,7 @@ function bubbleSort(arr) {
         tmp = arr[i]
         arr[i] = arr[i + 1]
         arr[i + 1] = tmp
-        pos1 = i  // 最后一次交换的位置
+        pos1 = i // 最后一次交换的位置
       }
     }
     high = pos1 // 记录上次位置
@@ -30,8 +30,8 @@ function bubbleSort(arr) {
   return arr
 }
 
-// 快速排序
-function quickSort(arr) {　　
+// 选择排序
+function selectionkSort (arr) {　　
   let len = arr.length　
   let minIndex, temp　
   console.time('选择排序耗时')　
@@ -48,4 +48,22 @@ function quickSort(arr) {　　
   }　　
   console.timeEnd('选择排序耗时')　
   return arr
+}
+
+function quickSort(arr) {
+  let len = arr.length
+
+}
+
+// 快速排序
+function quickSort(arr) {
+  if (arr.length <= 1) return arr
+  let middle = arr.splice(Math.floor(arr.length / 2), 1)[0]
+  let left = []
+  let right = []
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] <= middle) left.push(arr[i])
+    if (arr[i] > middle) right.push(arr[i])
+  }
+  return quickSort(left).concat(middle, quickSort(right))
 }
