@@ -35,7 +35,7 @@ function selectionkSort (arr) {　　
   let len = arr.length　
   let minIndex, temp　
   console.time('选择排序耗时')　
-  for (let i = 0; i < len - 1; i++) {　　　　
+  for (let i = 0; i < len; i++) {　　　　
     minIndex = i　　　
     for (let j = i + 1; j < len; j++) {　　　　　　
       if (arr[j] < arr[minIndex]) { // 寻找最小的数
@@ -48,11 +48,6 @@ function selectionkSort (arr) {　　
   }　　
   console.timeEnd('选择排序耗时')　
   return arr
-}
-
-function quickSort(arr) {
-  let len = arr.length
-
 }
 
 // 快速排序
