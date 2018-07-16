@@ -1,13 +1,11 @@
-/*
-* 数据拷贝使用方法
+/* * 数据拷贝使用方法
 * import { shy_dataCopy } from '@/coMethods/utils.js'
-* shy_dataCopy.deepCopy(data)
-*/
+* shy_dataCopy.deepCopy(data) */
 
 /* 简单数据拷贝 */
 const jsonCopy = function (obj) { // 缺点无法拷贝,函数,和日期,undefined,正则等特殊对象
- let res  = JSON.parse(JSON.stringify(obj))
- return res
+  let res = JSON.parse(JSON.stringify(obj))
+  return res
 }
 /* 任意数据拷贝 */
 const deepCopy = function (data) {
@@ -18,7 +16,7 @@ const deepCopy = function (data) {
     target = []
   } else if (data instanceof Object) {
     target = {}
-  } else if( data instanceof Function) {
+  } else if (data instanceof Function) {
     target = eval(data)
   }
   for (let key in data) {
