@@ -42,14 +42,6 @@ $ npm install vant --save --registry=https://registry.npm.taobao.org
   open -n /Applications/Google\ Chrome.app/ --args --disable-web-security  --user-data-dir=/Users/qiushiyuan/MyChromeDevUserData/
 </pre></code>
 
-### weex create 构建项目 修改webpack 自定义入口文件
-> src里新建一个entry.js，entry.js为入口，文件名随便取
-
->webpack.config.js找到
-const entry = {} 这里配置入口 const entry =pathTo.resolve('./src/entry.js');
-
->同理
-const weexEntry = pathTo.resolve('./src/entry.js');
 ### img和background的区别
 >图片的展示方式有两种，一种是以图片标签显示，一种是以背景图片显示。  
 
