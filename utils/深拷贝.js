@@ -25,7 +25,7 @@ const deepCopy = function (data) {
   return target
 }
 
-export const shy_dataCopy {
+export default {
   jsonCopy,
   deepCopy
 }
