@@ -178,6 +178,28 @@ export const utils = {
         console.log('onkeydown')
       }
     }).bind(this)
+  },
+
+  // 产生指定概率的随机数
+  // 数据格式：
+  // arr = [{name: '一等奖', prob: 1}, {name: '二等奖', prob: 2}]
+  probRandomNum: function (arr) {
+    let random = Math.random()
+    // 初始化概率值区间
+    let lower = 0
+    let upper = 0
+    // 计算概率总值
+  	let total = arr.map(item => item.prob).reduce((a, b) => a + b)
+  	arr.forEach((item, index) => {
+  		let nowIndex = index - 1
+  		if (nowIndex >= 0) {
+  			lower += arr[nowIndex].prob / total
+  		}
+  		upper += item.prob / total
+  		if (lower < random && random < upper) {
+  			console.log(item.name)
+  		}
+  	})
   }
   // ———————————————————————————————— 其他操作(结束) ————————————————————————————————————————
 
