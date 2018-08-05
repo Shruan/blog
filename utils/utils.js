@@ -200,6 +200,18 @@ export const utils = {
   			console.log(item.name)
   		}
   	})
+  },
+
+  // 2018-1-1 00:00 转换为 Wed Jul 25 2018 14:11:22 GMT+0800 (中国标准时间)
+  formatDate: function (data) {
+    let time = data.split(' ')
+    let sdate = time[0].split('-')
+    let date = new Date(sdate[0], sdate[1] - 1, sdate[2])
+    if (time[1]) {
+      let stime = time[1].split(':')
+      date.setHours(...stime)
+    }
+    return date
   }
   // ———————————————————————————————— 其他操作(结束) ————————————————————————————————————————
 
