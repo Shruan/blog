@@ -28,9 +28,9 @@ function dataDefineProperty (data, key, value) {
 // 消息订阅器
 function Dep () {
   this.subs = []
-  console.log(this.subs)
 }
 Dep.prototype = {
+  target: null,
   // 添加订阅者
   addSub: function (sub) {
     this.subs.push(sub)
@@ -48,7 +48,7 @@ function Watcher (vm, exp, cb) {
   this.vm = vm
   this.exp = exp
   this.cb = cb
-  this.get()
+  this.value = this.get()
 }
 Watcher.prototype = {
   update: function () {
@@ -57,21 +57,29 @@ Watcher.prototype = {
     this.run()
   },
   run: function () {
+    let oldValue = this.value
     let value = this.get()
-    this.cb(value)
+    if (value !== oldValue) {
+      this.cb(value, oldValue)
+    }
   },
   get: function () {
     Dep.target = this
-    let value = this.vm[this.exp]
+    this.value = this.vm[this.exp] // 会触发data的getter事件，添加订阅者
     Dep.target = null
-    return value
+    return this.value
   }
 }
 
 // 例子
-let data = {name: 'shy'}
+let data = { name: 'shy' }
+
 observer(data)
 
-new Watcher(data, 'name', () => {
+new Watcher(data, 'name', (value, oldValue) => {
+  console.log(value)
+  console.log(oldValue)
   // 监听变化后操作
 })
+
+data.name = 'Shruan'
