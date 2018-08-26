@@ -17,36 +17,35 @@ Date.prototype.Format = function (fmt) {
   return fmt
 }
 
-const oneDay = 24 * 60 * 60 * 1000
-
 const getDateRange = {
-  format: 'yyyy-mm-dd hh:mm',
+  format: 'yyyy-MM-dd hh:mm',
+  oneDay: 24 * 60 * 60 * 1000,
   // 获取当前时刻起间隔count天日期 count：3未来三天、-3过去三天
-  getIntervalDayStartAndEnd: function (count = 0) {
-    let startStop = []
+  getIntervalDayStartAndEnd: function (count = 0, format = this.format) {
+    let dateRange = []
     let currentDate = new Date()
-    let start = currentDate.Format(this.format)
-    let end = new Date(currentDate.setTime(currentDate.getTime() + oneDay * count)).Format(this.format)
-    startStop.push(start)
-    startStop.push(end)
-    return startStop
+    let start = currentDate.Format(format)
+    let end = new Date(currentDate.setTime(currentDate.getTime() + this.oneDay * count)).Format(format)
+    dateRange.push(start)
+    dateRange.push(end)
+    return count > 0 ? dateRange : dateRange.reverse()
   },
 
-  // 获取今天日期 monthCount：0今天、-1昨天、1明天
-  getDayStartAndEnd: function (dayCount = 0) {
-    let startStop = []
-    let start = new Date(new Date().setHours(0, 0, 0) + oneDay * dayCount).Format(this.format)
-    let end = new Date(new Date().setHours(23, 59, 59) + oneDay * dayCount).Format(this.format)
-    startStop.push(start)
-    startStop.push(end)
-    return startStop
+  // 获取今天日期 count：0今天、-1昨天、1明天
+  getDayStartAndEnd: function (count = 0, format = this.format) {
+    let dateRange = []
+    let start = new Date(new Date().setHours(0, 0, 0) + this.oneDay * count).Format(format)
+    let end = new Date(new Date().setHours(23, 59, 59) + this.oneDay * count).Format(format)
+    dateRange.push(start)
+    dateRange.push(end)
+    return dateRange
   },
 
-  // 获取本月日期 monthCount：0当前月、-1上一个月、1下一个月
-  getMonthStartAndEnd: function (monthCount = 0) {
-    let startStop = []
+  // 获取本月日期 count：0当前月、-1上一个月、1下一个月
+  getMonthStartAndEnd: function (count = 0, format = this.format) {
+    let dateRange = []
     let currentDate = new Date()
-    let month = currentDate.getMonth() + monthCount
+    let month = currentDate.getMonth() + count
     if (month < 0) {
       let n = parseInt((-month) / 12)
       month += n * 12
@@ -58,30 +57,30 @@ const getDateRange = {
     // 获得当前年份4位年
     let currentYear = currentDate.getFullYear()
     // 获得上一个月的第一天
-    let currentMonthFirstDay = new Date(currentYear, currentMonth, 1).Format(this.format)
+    let currentMonthFirstDay = new Date(currentYear, currentMonth, 1).Format(format)
     // 获得上一月的最后一天
     let currentMonthLastDay = new Date(currentYear, currentMonth + 1, 0).setHours(23, 59, 59)
-    currentMonthLastDay = new Date(currentMonthLastDay).Format(this.format)
-    startStop.push(currentMonthFirstDay)
-    startStop.push(currentMonthLastDay)
-    return startStop
+    currentMonthLastDay = new Date(currentMonthLastDay).Format(format)
+    dateRange.push(currentMonthFirstDay)
+    dateRange.push(currentMonthLastDay)
+    return dateRange
   },
 
-  // 获取本月日期 weekCount：0当本周、-1上一周、1下一周
-  getWeekStartAndEnd: function (weekCount = 0) {
-    let startStop = []
+  // 获取本月日期 count：0当本周、-1上一周、1下一周
+  getWeekStartAndEnd: function (count = 0, format = this.format) {
+    let dateRange = []
     let currentDate = new Date()
     let currentTime = currentDate.getTime()
     let currentDay = currentDate.getDay()  // 本周的第几天
-    let MondayTime = currentTime - (currentDay - 1) * oneDay + (weekCount * 7 * oneDay)
-    let SundayTime = currentTime + (7 - currentDay) * oneDay + (weekCount * 7 * oneDay)
+    let MondayTime = currentTime - (currentDay - 1) * this.oneDay + (count * 7 * this.oneDay)
+    let SundayTime = currentTime + (7 - currentDay) * this.oneDay + (count * 7 * this.oneDay)
     let start = new Date(MondayTime).setHours(0, 0, 0)
     let end = new Date(SundayTime).setHours(23, 59, 59)
-    start = new Date(start).Format(this.format)
-    end = new Date(end).Format(this.format)
-    startStop.push(start)
-    startStop.push(end)
-    return startStop
+    start = new Date(start).Format(format)
+    end = new Date(end).Format(format)
+    dateRange.push(start)
+    dateRange.push(end)
+    return dateRange
   },
 
   // 2018-1-1 00:00 转换为 Wed Jul 25 2018 14:11:22 GMT+0800 (中国标准时间)
