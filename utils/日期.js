@@ -96,4 +96,5 @@ const getDateRange = {
   }
 }
 
+console.log(getDateRange.getWeekStartAndEnd())
 export default getDateRange
