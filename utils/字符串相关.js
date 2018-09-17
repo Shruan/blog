@@ -6,17 +6,17 @@
 
 export const shy_string = {
   //删除右边的空格
-  trim (str) {
+  trim: function (str) {
     return str.replace(/(^\s*)|(\s*$)/g, '')
   },
 
   //删除左边的空格
-  function ltrim (str) {
+  ltrim: function (str) {
     return str.replace(/(^\s*)/g, '');
 　},
 
   //删除右边的空格
-  function rtrim (str) {
+  rtrim: function (str) {
     return str.replace(/(\s*$)/g, '')
   }
 }
