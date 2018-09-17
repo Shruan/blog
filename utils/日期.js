@@ -1,25 +1,27 @@
-/* eslint-disable no-extend-native */
-Date.prototype.Format = function (fmt) {
-  // 日期格式化
-  var o = {
-    'M+': this.getMonth() + 1,
-    'd+': this.getDate(),
-    'h+': this.getHours(),
-    'm+': this.getMinutes(),
-    's+': this.getSeconds(),
-    'q+': Math.floor((this.getMonth() + 3) / 3),
-    'S': this.getMilliseconds()
-  }
-  if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + '').substr(4 - RegExp.$1.length))
-  for (var k in o) {
-    if (new RegExp('(' + k + ')').test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (('00' + o[k]).substr(('' + o[k]).length)))
-  }
-  return fmt
-}
-
 const getDateRange = {
   format: 'yyyy-MM-dd hh:mm',
   oneDay: 24 * 60 * 60 * 1000,
+  // 在date原型链上增加格式化日期方法Format
+  setDateProtoType: function () {
+    /* eslint-disable no-extend-native */
+    Date.prototype.Format = function (fmt) {
+      // 日期格式化
+      var o = {
+        'M+': this.getMonth() + 1,
+        'd+': this.getDate(),
+        'h+': this.getHours(),
+        'm+': this.getMinutes(),
+        's+': this.getSeconds(),
+        'q+': Math.floor((this.getMonth() + 3) / 3),
+        'S': this.getMilliseconds()
+      }
+      if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + '').substr(4 - RegExp.$1.length))
+      for (var k in o) {
+        if (new RegExp('(' + k + ')').test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (('00' + o[k]).substr(('' + o[k]).length)))
+      }
+      return fmt
+    }
+  }(),
   // 获取当前时刻起间隔count天日期 count：3未来三天、-3过去三天
   getIntervalDayStartAndEnd: function (count = 0, format = this.format) {
     let dateRange = []
@@ -95,5 +97,4 @@ const getDateRange = {
     return date
   }
 }
-
 export default getDateRange
