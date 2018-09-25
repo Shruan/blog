@@ -60,11 +60,22 @@ flush privileges;
 set password for 'root'@'localhost'=password('新密码');
 ```
 4.配置环境变量
-```
-# vim /etc/profile  // 打开环境变量文件
+```Linux
+# vim /etc/profile // 打开 全局 环境变量文件
+# vim ~/.bash_profile // 打开 个人 环境变量文件
 export PATH=/usr/local/mysql/bin:$PATH  // 配置mysql环境变量
 
 #source /etc/profile  // 立即生效请运行：
+<!-- #source ~/.bash_profile  // 立即生效请运行 -->
+```
+
+5.重启终端后配置的及时生效
+
+```
+# vim ~/.zshrc // 重启终端后执行指令
+
+// 在~/.zshrc文件最后，增加一行：
+source /etc/profile  // 立即生效请运行
 ```
 
 ## PHP 7
