@@ -8,13 +8,17 @@
 [Linux服务器相关配置](./Linux、Mac/Linux.md)
 
 ### cnpm使用
-> 安装cnpm   
-$ npm install -g cnpm --registry=https://registry.npm.taobao.org
+  - 安装cnpm   
+  ```bash
+    $ npm install -g cnpm --registry=https://registry.npm.taobao.org
+  ```
 
-> cnpm免安装使用
-$ npm install vant --save --registry=https://registry.npm.taobao.org
+  - cnpm免安装使用
+  ```bash
+    $ npm install xxx --save --registry=https://registry.npm.taobao.org
+  ```
 
 ###  mac 新版本谷歌浏览器 跨域指令
-<pre><code>
-  open -n /Applications/Google\ Chrome.app/ --args --disable-web-security  --user-data-dir=/Users/qiushiyuan/MyChromeDevUserData/
-</pre></code>
+```bash
+  $ open -n /Applications/Google\ Chrome.app/ --args --disable-web-security  --user-data-dir=/Users/qiushiyuan/MyChromeDevUserData/
+```
