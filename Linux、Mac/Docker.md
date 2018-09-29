@@ -1,6 +1,6 @@
-# Docker 常用指令（ Mac版 ）
+# Docker 常用指令
 
-### docker安装指令
+### docker安装指令（ Mac版 ）
 ```bash
   $ brew cask install docker
 ```
