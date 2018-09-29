@@ -1,0 +1,43 @@
+# This is a commit
+# 指定基础镜像
+FROM node
+
+# 维护者
+MAINTAINER qiushiyuan1994@qq.com
+
+# 给镜像添加信息。使用docker inspect可查看镜像的相关信息
+LABEL version="1.0.0"
+LABEL description="This test demo"
+
+# 工作目录
+WORKDIR /www/node-info
+
+# 将本地文件添加到容器中，identity, gzip, bzip2，xz，tar.gz，tgz等类型的文件将被添加tar -x命令，进行解压
+# ADD <src> <dest>
+# 添加 "test" 到 `WORKDIR`/relativeDir/
+# ADD test relativeDir/
+
+# 将本地文件添拷贝到容器中，不会解压
+COPY test.js node/
+COPY package.json node/
+
+# 设置环境变量
+ENV ENV="dev"
+
+# 指定于外界交互的端口，在容器启动时用-p传递参数，例如-p 3307:3306将容器内的3306绑定到本机的3307
+# EXPOSE <port> [<port>...]
+# EXPOSE 80 443
+EXPOSE 3000
+
+WORKDIR /www/node-info/node
+
+# 在镜像被构建时执行命令，用于如安装软件的命令、环境配置的命令等。
+# RUN wget https://npm.taobao.org/mirrors/node/v8.9.3/node-v8.9.3-linux-x64.tar.xz
+# RUN tar -xzvf node-v8.9.3-linux-x64.tar.gz
+# RUN tar -xvf node-v8.9.3-linux-x64.tar
+# RUN ln -s /root/node-v8.9.3-linux-x64/bin/node /usr/local/bin/node
+# RUN ln -s /root/node-v8.9.3-linux-x64/bin/npm /usr/local/bin/npm
+RUN npm install
+
+# 构建容器后调用，在容器启动时才进行调用
+CMD ["node", "./test.js"]

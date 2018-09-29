@@ -1,4 +1,4 @@
-# Docker 常用指令
+# Docker 常用指令（ Mac版 ）
 
 ### docker安装指令
 ```bash
@@ -6,15 +6,24 @@
 ```
 
 ### 可安装镜像查询
-```bash
-  $ docker search centos // 可安装centos镜像
-  $ docker search tomcat
-```
+  - [镜像市场](https://store.docker.com)
+  - 命令行
+  ```bash
+    $ docker search centos // 可安装centos镜像
+    $ docker search tomcat
+  ```
 
-### 安装镜像
-```bash
-  $ docker pull centos
-```
+### 构建镜像
+  - 安装已有镜像
+  ```bash
+    $ docker pull centos
+  ```
+
+  - 通过[dockerfile](./dockerfile)构建镜像
+  ```bash
+    $ docker build -t="REPOSITORY:TAG" dockerfile_path
+    $ docker build -t="shruan/node:test" .
+  ```
 
 ### 查看已安装镜像
 ```bash
@@ -40,7 +49,7 @@
 
 ### 通过镜像构建一个容器（run）
 ```bash
-  $ docker run -p port1:port2 --name NAMES containerName:tag/imageID   -e ENV="dev"
+  $ docker run -p port1:port2 --name NAMES containerName:tag/imageID -e ENV="dev"
 ```
   - -p 表示端口号
     - port1 是指我们访问tomcat时的端口号
@@ -113,6 +122,7 @@
     $ docker exec -i -t containnerID/NAMES /bin/bash
     $ docker exec -i -t smytest /bin/bash
   ```
+
 ### 将容器转化为镜像（commit）
 ```bash
   $ docker commit -m Instructions -a Author containerID/NAMES REPOSITORY:TAG
