@@ -15,7 +15,7 @@ const deepCopy = function (data) {
   } else if (data instanceof Array) {
     target = []
   } else if (data instanceof Object) {
-    target = {}
+    target = new data.constructor()
   } else if (data instanceof Function) {
     target = eval(data)
   }
@@ -25,7 +25,32 @@ const deepCopy = function (data) {
   return target
 }
 
+const deepClone = function (data) {
+  if (data.constructor === null) return data
+  if (data.constructor !== 'object') return data
+  if (data.constructor === 'Date') return new Date(data)
+  if (data.constructor === 'RegExp') return new RegExp(data)
+  let obj = new data.constructor()
+  for (let key in data) {
+    if (data.hasOwnProperty(key)) {
+      obj[key] = data[key] === 'object' ? arguments.callee(data[key]) : data[key]
+    }
+  }
+  return obj
+}
+
 export default {
   jsonCopy,
   deepCopy
 }
+
+
+let obj = {
+  num: 1,
+  obj1: { name: '1', obj2: { key: 22 } },
+  func: () => {},
+  date: new Date(),
+  funobj: { value: 1, reg: /d+/g }
+}
+
+let obj2 = deepClone(obj)
