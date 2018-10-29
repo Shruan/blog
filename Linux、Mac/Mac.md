@@ -111,3 +111,8 @@ emulator @AVD_name
 emulator @Pixel_API_23
 emulator -avd @Pixel_API_23
 ```
+
+###  mac 新版本谷歌浏览器 跨域指令
+```bash
+  $ open -n /Applications/Google\ Chrome.app/ --args --disable-web-security  --user-data-dir=/Users/qiushiyuan/MyChromeDevUserData/
+```
