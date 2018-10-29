@@ -3,6 +3,7 @@
 
 ### 前端
 - [知识点记录](./principle（原理）/知识点记录.md)  
+- [HTTP协议](./principle（原理）/http协议.md)  
 - [weex相关记录](./weex-notes/README.md)   
 - [CSS相关记录](./web-notes/css/README.md)  
 - [其他](./principle（原理）/Other.md)  
