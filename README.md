@@ -12,5 +12,8 @@
 - [Docker常用指令](./Linux、Mac/Docker.md)  
 - [Linux服务器相关配置](./Linux、Mac/Linux.md)  
 
+### 其他
+- [git常用指令](./principle（原理）/git.md)
+
 ### 阅读
 - [文章、博客](./Others/文章博客.md)  
