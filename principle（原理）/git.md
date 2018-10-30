@@ -36,8 +36,9 @@
 - 回退到上上版本：git reset --hard HEAD^^
 - 回退到上上版本：git reset --hard HEAD~2
 - 回退到某个版本：git reset --hard
-- 强制推送到远程分支：git push -f
-注意：
+- 强制推送到远程分支：git push -f  
+
+- 注意：  
 1、HEAD 指向的版本是当前版本，^ 表示上一个版本，~N 表示上N个版本，可简写  
 2、git log 可以查看  
 3、git reflog 可以查看命令历史，用来回到某个未来的版本  
