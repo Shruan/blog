@@ -4,6 +4,7 @@
 ### 前端
 - [知识点记录](./principle/知识点记录.md)  
 - [HTTP协议](./principle/http协议.md)  
+- [排序算法](./principle/sort.js)  
 - [weex相关记录](./weex/README.md)   
 - [CSS相关记录](./web/css/README.md)  
 - [其他](./principle/Other.md)  
