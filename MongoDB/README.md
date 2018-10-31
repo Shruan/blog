@@ -34,7 +34,9 @@
 
   print('[test]print success') //没有错误显示成功
 ```
-- 执行 mongo test.js
+- 执行 mongo test.js  
+
+#### 查询语句[find](./find.md)
 
 #### 批量插入
 ```javascript
@@ -52,6 +54,7 @@
 ```
 
 #### 更新数据（错误使用）
+- [update](./update.md)
 - 基础更新 会覆盖原有数据（存在问题）
 ```javascript
   // 原数据  { name: 'test', sex: 1 }
