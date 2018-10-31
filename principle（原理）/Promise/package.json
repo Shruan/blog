@@ -1,0 +1,25 @@
+{
+  "name": "promise",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://Shruan@github.com/Shruan/Promise.git"
+  },
+  "keywords": [
+    "promise/A+"
+  ],
+  "author": "Shruan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shruan/Promise/issues"
+  },
+  "homepage": "https://github.com/Shruan/Promise#readme",
+  "devDependencies": {
+    "promises-aplus-tests": "^2.1.2"
+  }
+}
