@@ -29,7 +29,7 @@
 #### Nginx安装
 
 ```bash
-  $ curl -O https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-3.0.6.tgz
+  $ wget http://nginx.org/download/nginx-1.9.9.tar.gz
   $ tar -zxvf nginx-1.9.9.tar.gz
   $ cd nginx-1.9.9.tar.gz
   $ ./configure
