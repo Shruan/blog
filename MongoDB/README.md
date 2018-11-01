@@ -1,3 +1,22 @@
+# MongoDB
+### 安装
+
+#### 下载并安装
+```bash
+$ curl -O https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-3.0.6.tgz
+$ tar -zxvf mongodb-linux-x86_64-3.0.6.tgz
+$ mv mongodb-linux-x86_64-3.0.6/ /usr/local/mongodb
+$ mkdir -p /data/db
+```
+#### 配置环境变量
+```bash
+$ vim /etc/profile // 打开 全局 环境变量文件
+# vim ~/.bash_profile // 打开 个人 环境变量文件
+export PATH=$PATH:/usr/local/mongodb/bin  // 配置MongoDB环境变量
+
+$ source /etc/profile  // 立即生效请运行：
+```
+
 ### MongoDB基本用法
  - show dbs :显示已有数据库。
  - use admin： 进入数据，也可以理解成为使用数据库。
