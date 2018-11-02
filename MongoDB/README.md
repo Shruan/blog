@@ -23,6 +23,19 @@ $ source /etc/profile  // 立即生效请运行：
  - show collections: 显示数据库中的集合（关系型中叫表）。
  - db: 显示所在库的当前位置。
 
+ - 建立管理账号
+  ```bash
+    > mongo
+    > use admin
+    > db.createUser({ user: "admin", pwd: "admin", roles: [{ role: "admin", db: "admin" }] })
+  ```
+ 
+ - 给指定账号认证
+  ```javascript
+    > db.auth(<username>,<passwd>)
+    $ mongo admin -u <username> -p <passwd>
+  ```
+
 #### 基础命令
 - db.集合.insert()   // 新建数据集合和插入文件（数据），当集合没有时，这时候就可以新建一个集合，并向里边插入数据.
 ```javascript
