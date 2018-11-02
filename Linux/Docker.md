@@ -129,7 +129,7 @@
   ```  
 
 ### 容器之间通信
-  - 建立被连接容器 mongo
+  - 建立被连接容器（mongo）
     ```bash
       #  --auth 开启mongo 账户权限校验
       $ docker run --name <Name> -d -p <path1>:<path2> <containerName:tag/imageID>
@@ -146,9 +146,8 @@
       $ db.auth('admin','admin')
     ```
 
-  - 建立连接 mongo 容器
+  - 建立连接 mongo 的容器（node）
     ```bash
-      #  --auth 开启mongo 账户权限校验
       $ docker run --name <Name> -d -p <path1>:<path2> --link <containerName>:<alias> <containerName:tag/imageID>
       $ docker run --name shruan/node -d -p 3000:3000 --link mongo:db node:latest
     ```
