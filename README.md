@@ -13,6 +13,8 @@
 - [Docker常用指令](./Linux/Docker.md)  
 - [Linux服务器相关配置](./Linux/Linux.md)  
 - [MongoDB基本用法](./MongoDB/README.md)  
+- [Nginx](./Linux/Nginx.md)  
+- [PM2常用指令](./Linux/pm2.md)  
 
 ### 其他
 - [git常用指令](./principle/git.md)
