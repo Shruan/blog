@@ -31,7 +31,7 @@
 ```bash
   $ wget http://nginx.org/download/nginx-1.9.9.tar.gz
   $ tar -zxvf nginx-1.9.9.tar.gz
-  $ cd nginx-1.9.9.tar.gz
+  $ cd nginx-1.9.9
   $ ./configure
   & make && make install
 ```
