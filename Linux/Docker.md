@@ -50,7 +50,11 @@
 ### 通过镜像构建一个容器（run）
 ```bash
   $ docker run -p <port1>:<port2> --name <NAMES> <containerName:tag/imageID> -e ENV="dev"
+  # 建立容器并启动 -it 、 /bin/bash
   $ docker run -d -i -t <imageID> /bin/bash
+  # 将本地文件与容器内指定文件共享 -v
+  $ docker run -d -v <local_path>:<path> <imageID> /bin/bash
+
 ```
   - -p 表示端口号
     - port1 是指我们访问tomcat时的端口号
@@ -122,7 +126,48 @@
   ```bash
     $ docker exec -i -t <containnerID/NAMES> /bin/bash
     $ docker exec -i -t smytest /bin/bash
+  ```  
+
+### 容器之间通信
+  - 建立被连接容器 mongo
+    ```bash
+      #  --auth 开启mongo 账户权限校验
+      $ docker run --name <Name> -d -p <path1>:<path2> <containerName:tag/imageID>
+      $ docker run --name mongo -d -p 27017:27017 mongo --auth
+    ```
+
+  - 由于mongo开启身份校验，需进入容器授权(无需授权容器可忽略该步骤)
+    ```bash
+      $ docker exec -it mongo /bin/bash
+      $ mongo admin
+      # 创建manager user
+      $ db.createUser({user:"admin", pwd:"admin",roles:[{role:"admin",db:"admin"}]})
+      # 账号授权
+      $ db.auth('admin','admin')
+    ```
+
+  - 建立连接 mongo 容器
+    ```bash
+      #  --auth 开启mongo 账户权限校验
+      $ docker run --name <Name> -d -p <path1>:<path2> --link <containerName>:<alias> <containerName:tag/imageID>
+      $ docker run --name shruan/node -d -p 3000:3000 --link mongo:db node:latest
+    ```
+    - --link 容器连接指令
+    - < containerName > : < alias >
+    - < 被连接容器名称 > : < 容器访问别名 >
+    - 注：别名在node容器的访问使用
+
+  - 验证连接
+  ```bash
+    $ docker exec -it shruan/node /bin/bash
+    $ curl db
   ```
+
+  - node 中连接 mongo 时的配置
+  ```javascript
+    mongo.connect("mongodb: //admin:admin@db:27017/api-mock?authSource=admin")
+  ```
+
 
 ### 将容器转化为镜像（commit）
 ```bash
