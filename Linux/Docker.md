@@ -49,7 +49,8 @@
 
 ### 通过镜像构建一个容器（run）
 ```bash
-  $ docker run -p port1:port2 --name NAMES containerName:tag/imageID -e ENV="dev"
+  $ docker run -p <port1>:<port2> --name <NAMES> <containerName:tag/imageID> -e ENV="dev"
+  $ docker run -d -i -t <imageID> /bin/bash
 ```
   - -p 表示端口号
     - port1 是指我们访问tomcat时的端口号
@@ -83,60 +84,60 @@
 #### 容器常用指令
   - 启动已有的容器
   ```bash
-    $ docker start containerID/NAMES // 容器ID 或者 容器名
+    $ docker start <containerID/NAMES> // 容器ID 或者 容器名
     $ docker start smytest
   ```
 
   - 停止容器
   ```bash
-    $ docker stop containerID/NAMES
+    $ docker stop <containerID/NAMES>
     $ docker stop smytest
   ```
 
   - 重启容器
   ```bash
-    $ docker restart containerID/NAMES
+    $ docker restart <containerID/NAMES>
     $ docker restart smytest
   ```
 
   - 删除容器
   ```bash
-    $ docker rm containerID/NAMES
+    $ docker rm <containerID/NAMES>
     $ docker rm smytest
   ```
 
   - 复制文件到容器中
   ```bash
-    $ docker cp file_path containerID/NAMES:path
+    $ docker cp <file_path> <containerID/NAMES>:<path>
     $ docker cp /ROOT.var smytest:/usr/local/webapps/
   ```
 
   - 复制容器中文件到本地
   ```bash
-    $ docker cp containerID/NAMES:path local_path
+    $ docker cp <containerID/NAMES>:<path> <local_path>
     $ docker cp smytest:/usr/local/ /home/
   ```
 
   - 进入已经启动的容器
   ```bash
-    $ docker exec -i -t containnerID/NAMES /bin/bash
+    $ docker exec -i -t <containnerID/NAMES> /bin/bash
     $ docker exec -i -t smytest /bin/bash
   ```
 
 ### 将容器转化为镜像（commit）
 ```bash
-  $ docker commit -m Instructions -a Author containerID/NAMES REPOSITORY:TAG
+  $ docker commit -m <Instructions> -a <Author> <containerID/NAMES> <REPOSITORY>:<TAG>
   $ docker commit -m "docker test" -a "Shruan" smytest shruan/tomcat:1.0.0
 ```
 
 ### 将镜像打包（save）
 ```bash
-  $ docker save -o path/filename REPOSITORY:TAG/IMAGEID
+  $ docker save -o <path/filename> <REPOSITORY:TAG>/<imageID>
   $ docker save -o /Users/qiushiyuan/docker/smytest.v1.0.0.tar shruan/tomcat:1.0.0
 ```
 
 ### 将包恢复成镜像（load）
 ```bash
-  $ docker load path/filename
+  $ docker load <path/filename>
   $ docker load /Users/qiushiyuan/docker/smytest.v1.0.0.tar
 ```
