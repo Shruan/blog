@@ -158,6 +158,7 @@
 
   - 验证连接
   ```bash
+    # db 被连接容器的别名
     $ docker exec -it shruan/node /bin/bash
     $ curl db
   ```
