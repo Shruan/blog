@@ -1,0 +1,22 @@
+# 指定基础镜像
+FROM node:latest
+
+# 维护者
+MAINTAINER qiushiyuan1994@qq.com
+
+# 工作目录
+WORKDIR /www
+
+# 将本地文件添拷贝到容器中，不会解压
+COPY api-mocker node-server/api-mocker
+
+EXPOSE 7001
+
+WORKDIR /www/node-server/api-mocker/server
+
+RUN npm install
+
+WORKDIR /www/node-server/api-mocker
+
+# 构建容器后调用，在容器启动时才进行调用
+CMD ["make", "prod_server"]
