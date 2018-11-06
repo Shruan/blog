@@ -20,4 +20,16 @@
 - [git常用指令](./principle/git.md)
 
 ### 阅读
-- [文章、博客](./Others/文章博客.md)  
+- [前端知识点图谱](https://yuchengkai.cn/docs/zh/frontend)
+- [阮一峰文章](https://github.com/ruanyf/articles)
+- [蚂蚁数据体验技术团队的文章仓库](https://github.com/ProtoTeam/blog)
+- [美团技术文章](https://tech.meituan.com/archives)
+- [JavaScript 秘密花园](http://bonsaiden.github.io/JavaScript-Garden/zh/)
+- [JavaScript 标准参考教程](http://javascript.ruanyifeng.com/)
+- [ECMAScript 6入门](http://es6.ruanyifeng.com/)
+- [webpack部分源码解读](https://github.com/DDFE/DDFE-blog/issues/12)
+- [css参考手册](https://wangdoc.com/javascript/)
+
+### 工具
+- [moment日期工具](http://momentjs.cn/docs/#/customization/long-date-formats/)
+- [Lodash](https://www.lodashjs.com/)
