@@ -14,8 +14,7 @@
         - 响应头（首部字段、header）
         - 响应体
 
-      ![原理图](../assets/image/http报文.png)
-    - [GET和POST请求的区别](./http请求原理.md)
+      ![原理图](../../assets/image/http报文.png)
 
   - TCP三次握手
     - Client端 向 Server端 发送连接请求报文 SYN
