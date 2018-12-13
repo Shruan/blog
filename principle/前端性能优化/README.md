@@ -76,11 +76,12 @@
       <link rel="dns-prefetch" href="//www.zhix.net">
     ```
 
-  - meta 强制开启预解析（a标签）
+  - meta 强制开启dns预解析
     ```html
+      <!-- 浏览器中默认开启 dns预解析 -->
+      <!-- https协议下中浏览器默认关闭 dns预解析 -->
       <meta http-equiv="x-dns-prefetch-control" content="on">
     ```
-
 
 #### Service Worker
   - 介于服务器和网页之间的拦截器，能够拦截进出的HTTP 请求，从而完全控制你的网站。实现离线缓存。
