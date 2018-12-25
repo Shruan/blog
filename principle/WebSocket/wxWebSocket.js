@@ -1,4 +1,4 @@
-function lcWebSocket (url, token, onopen) {
+function wxWebSocket (url, token, onopen) {
   const ws = new wx.connectSocket({
     url: url,
     header: {
@@ -136,17 +136,15 @@ const config = {
   url: 'url'
 }
 
-export default config
-
-// 向 mpvue 提供插件
+// 向 mpvue 提供插件入口
 const install = function (Vue, options) {
   // 原型链挂载连接socket方法
   Vue.prototype.$connectWs = (token, onpen) => {
-    Vue.prototype.$ws = new lcWebSocket(config.wsHost + config.url, token, onpen)
+    Vue.prototype.$ws = new wxWebSocket(config.wsHost + config.url, token, onpen)
   }
 }
 
 export default {
   install,
-  lcWebSocket
+  wxWebSocket
 }
