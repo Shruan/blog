@@ -407,7 +407,7 @@
       - ...
 
   - #### 4、跨域
-    - ### 不同域名之间怎么实现数据通信（纯前端）
+    - 不同域名之间怎么实现数据通信（纯前端）
       - window.open页面通信
         ```javascript
           const childPage = window.open('child.html', 'child')
@@ -481,7 +481,7 @@
           }
         </script>
         ```
-    - ### 服务端
+    - 服务端
       - 设置 CORS: Access-Control-Allow-Origin：*
       - 利用服务端代理
 ### 框架：vue
