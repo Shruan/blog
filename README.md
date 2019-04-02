@@ -2,7 +2,7 @@
 笔记与总结
 
 ### 前端
-- [知识点记录](./principle/知识点记录.md)  
+- [知识点记录](./principle/README.md)  
 - [HTTP协议](./principle/http协议.md)  
 - [排序算法](./principle/sort.js)  
 - [weex相关记录](./weex)   

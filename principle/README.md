@@ -336,7 +336,7 @@
   - Set、Map
 
 ### CSS
-- #### 1、CSS BFC/IFC（内联元素格式化上下文）
+- #### 1、BFC/IFC（内联元素格式化上下文）
   - BFC
     - 概念：块级格式化上下文
     - 原理（渲染规则）：
@@ -406,81 +406,84 @@
       - 下一轮宏任务开始执行（即setTimeout）
       - ...
 
-  - #### 4、不同域名之间怎么实现数据通信（纯前端）
-    - window.open页面通信
-      ```javascript
-        const childPage = window.open('child.html', 'child')
+  - #### 4、跨域
+    - ### 不同域名之间怎么实现数据通信（纯前端）
+      - window.open页面通信
+        ```javascript
+          const childPage = window.open('child.html', 'child')
 
-        childPage.onload = () => {
-          childPage.postMessage('hello', location.origin)
-        }
+          childPage.onload = () => {
+            childPage.postMessage('hello', location.origin)
+          }
 
-        // child.html
-        window.onmessage = evt => {
-          // evt.data
-        }
-        //缺点是只能与自己打开的页面完成通讯，应用面相对较窄；但优点是在跨域场景中依然可以使用该方案。
-      ```
+          // child.html
+          window.onmessage = evt => {
+            // evt.data
+          }
+          //缺点是只能与自己打开的页面完成通讯，应用面相对较窄；但优点是在跨域场景中依然可以使用该方案。
+        ```
 
-    - iframe 子页面向父页面发送信息
-      ```javascript
-        // parent.html
-        window.addEventListener('message', function (e) {
-          // 通过origin属性判断消息来源地址
-          console.log(e.data)  
-        }, false)
+      - iframe 子页面向父页面发送信息
+        ```javascript
+          // parent.html
+          window.addEventListener('message', function (e) {
+            // 通过origin属性判断消息来源地址
+            console.log(e.data)  
+          }, false)
 
-        // child.html
-        var ifr = window.parent  //获取父窗体
-        ifr.postMessage('这是传递给a.html的信息', location.origin);
-      ```
-    - localStorage （跨浏览器无效）
-    - cookie （要求domain域名一致，或子域名相同）
-    - webSocket (需要后端来维护)
-      > 它实现了浏览器与服务器全双工通信，同时允许跨域通讯  
+          // child.html
+          var ifr = window.parent  //获取父窗体
+          ifr.postMessage('这是传递给a.html的信息', location.origin);
+        ```
+      - localStorage （跨浏览器无效）
+      - cookie （要求domain域名一致，或子域名相同）
+      - webSocket (需要后端来维护)
+        > 它实现了浏览器与服务器全双工通信，同时允许跨域通讯  
 
-      ```javascript
-        // 新建一个WebSocket对象，
-        var ws = new WebSocket('ws://127.0.0.1:8080/url');
-        // 注意服务器端的协议必须为“ws://”或“wss://”，其中ws开头是普通的websocket连接，wss是安全的websocket连接，类似于https。
-        // 连接被打开时调用
-        ws.onopen = function () {};
+        ```javascript
+          // 新建一个WebSocket对象，
+          var ws = new WebSocket('ws://127.0.0.1:8080/url');
+          // 注意服务器端的协议必须为“ws://”或“wss://”，其中ws开头是普通的websocket连接，wss是安全的websocket连接，类似于https。
+          // 连接被打开时调用
+          ws.onopen = function () {};
 
-        // 在出现错误时调用，例如在连接断掉时
-        ws.onerror = function (e) {};
+          // 在出现错误时调用，例如在连接断掉时
+          ws.onerror = function (e) {};
 
-        // 在连接被关闭时调用
-        ws.onclose = function () {};
+          // 在连接被关闭时调用
+          ws.onclose = function () {};
 
-        ws.onmessage = function(msg) {
-          // 在服务器端向客户端发送消息时调用
-          // msg.data包含了消息
-        };
-        // 这里是如何给服务器端发送一些数据
-        ws.send('some data');
-        // 关闭套接口
-        ws.close();
-      ```
-      例：[微信小程序websocket](./WebSocket/wxWebSocket.js) 封装
+          ws.onmessage = function(msg) {
+            // 在服务器端向客户端发送消息时调用
+            // msg.data包含了消息
+          };
+          // 这里是如何给服务器端发送一些数据
+          ws.send('some data');
+          // 关闭套接口
+          ws.close();
+        ```
+        例：[微信小程序websocket](./WebSocket/wxWebSocket.js) 封装
 
-    - JSONP跨域通信
-      > 原理：主要是利用script标签不受同源策略限制的特性
+      - JSONP跨域通信
+        > 原理：主要是利用script标签不受同源策略限制的特性
 
-      ```javascript
-      <script type="text/javascript">
-        // 创建script标签
-        var url = 'http://localhost.com/api?id=1&callback=jsonpCb'
-        var _script = document.createElement('script')
-        _script.setAttribute('src', url)
-        document.getElementsByTagName('head')[0].appendChild(_script)
+        ```javascript
+        <script type="text/javascript">
+          // 创建script标签
+          var url = 'http://localhost.com/api?id=1&callback=jsonpCb'
+          var _script = document.createElement('script')
+          _script.setAttribute('src', url)
+          document.getElementsByTagName('head')[0].appendChild(_script)
 
-        // script标签挂载后回调
-        function jsonpCb (data) {
-          console.log('name:' + data.name)
-        }
-      </script>
-      ```
-
+          // script标签挂载后回调
+          function jsonpCb (data) {
+            console.log('name:' + data.name)
+          }
+        </script>
+        ```
+    - ### 服务端
+      - 设置 CORS: Access-Control-Allow-Origin：*
+      - 利用服务端代理
 ### 框架：vue
 
   - #### 1、MVC 和 MVVM
