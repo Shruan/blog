@@ -393,7 +393,7 @@
 
       > 减少Repaint：DOM元素构建完成后一次性插入DOM节点中
 
-  - #### 3、JavaScript引擎的执行机制
+  - #### 3、JavaScript引擎的执行机制（Event Loop）
     - 机制：JavaScript是一门单线程语言，执行机制是使用Event Loop ( 事件轮询 )
     - js的事件任务可以分为 宏任务(mocro-task) 和 微任务(micro-task)
       - 宏任务：script、setTimeout、setInterval
@@ -484,6 +484,10 @@
     - 服务端
       - 设置 CORS: Access-Control-Allow-Origin：*
       - 利用服务端代理
+
+  - #### 5、[存储](./浏览器数据存储)
+
+
 ### 框架：vue
 
   - #### 1、MVC 和 MVVM
