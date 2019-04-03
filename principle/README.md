@@ -33,13 +33,13 @@
     - 特殊类型：Symbol（ES6 唯一值）
 
   - #### 2、闭包
-    - 闭包属于静态作用域，父级函数被销毁后，返回的子函数的[[scope]]中仍然保留对父级变量的对象和作用域链，因此可以继续访问父级的变量对象
+    - 闭包属于静态作用域，父级函数被销毁后，返回的子函数的`[[scope]]`中仍然保留对父级变量的对象和作用域链，因此可以继续访问父级的变量对象
 
     - 直译：一个函数内部返回另一个函数，而这个内部函数使用了父级的变量，在这个函数被调用时即产生了闭包。
 
     - 闭包产生的问题：
       - 形成闭包的函数的内部变量不会被垃圾回收机制所销毁
-      - 多个子函数的[[scope]]都是同时指向父级，是完全共享的。因此当父级的变量对象被修改时，所有子函数都受到影响。
+      - 多个子函数的`[[scope]]`都是同时指向父级，是完全共享的。因此当父级的变量对象被修改时，所有子函数都受到影响。
 
   - #### 3、this关键字
     - this是JavaScript的一个关键字，通常情况下指代调用它的那个对象，随着使用的场合不同，它的值会发生改变。
@@ -47,7 +47,7 @@
       - 在自执行函数中默认指代window对象
       - 在一般函数中默认指代函数本身
       - 通过new关键字生成的实例对象，this会指向实例本身
-    - 通过使用call、apply、bind可以手动改变this的指代对象
+    - 通过使用`call`、`apply`、`bind`可以手动改变this的指代对象
 
     - call、apply、bind的主要区别 传参的方式不一样
       ```js
@@ -172,11 +172,11 @@
 
   - #### 6、DOM事件基本概念
     - DOM事件级别：
-      - DOM0：elem.onClick(function () {})
+      - DOM0：`elem.onClick(function () {})`
       - DOM2：
-        - IE：elem.attachEvent('click', function () {})
-        - chrome等：elem.addEventListener('click', function () {}, false)
-      - DOM3：elem.addEventListener('click', function () {}, false)
+        - IE：`elem.attachEvent('click', function () {})`
+        - chrome等：`elem.addEventListener('click', function () {}, false)`
+      - DOM3：`elem.addEventListener('click', function () {}, false)`
 
     - DOM事件模型 指事件捕获、事件冒泡
     - 事件流 捕获阶段 -> 目标阶段 -> 冒泡阶段
@@ -206,7 +206,7 @@
       - 事件捕获：接收事件的顺序为根节点到具体的节点。
 
       - DOM2级事件处理程序
-        - addEventListener()和removeEventListener()。
+        - `addEventListener()`和`removeEventListener()`。
         它们接受三个参数：处理的事件名称，事件处理程序，Boolean。true则为在事件捕获阶段处理，false为在事件冒泡阶段处理。
 
         ```javascript
@@ -298,15 +298,18 @@
         ```
 
 ### ES6常用语法
-  - let/const
-  - 箭头函数 =>
-  - 解构函数 let {a} = {a: 1}
+  - 块级作用域 `let/const`
+  - 箭头函数 `map(() => {})`
+  - 解构函数 `let {a} = {a: 1}`
   - 多行字符串/模板变量  `${a}`
-  - 块级作用域
-  - 函数默认参数 function (a = 1, b = false) {}
-  - 扩展运算符 arr = [...arr, 1]
-  - promise
-    - 源于 jquery.deferred (<JQ_1.5)、jquery.deferred().promise() (>JQ_1.5)
+  - 函数默认参数 `function (a = 1, b = false) {}`
+  - 扩展运算符 `arr = [...arr, 1]`
+  - `proxy` 代理
+  - `class`类
+  - 模块化 `export`、`import`
+  - `Set、Map`
+  - `promise`
+    - 源于 `jquery.deferred` (<JQ_1.5)、`jquery.deferred().promise()` (>JQ_1.5)
     - Promise异常捕获 （Error、reject）
     - Promise.all、Promise.race
     ```js
@@ -321,22 +324,51 @@
       })
     ```
     - 规范
-      - Promise必须包含三种状态 pedding、fulfilled、rejected
+      - Promise必须包含三种状态 `pedding`、`fulfilled`、`rejected`
       - 状态改变 pedding —> fulfilled 、pedding —> rejected
       - 状态不可逆
-      - Promise必须实现.then()方法
+      - Promise必须实现`.then()`方法
       - .then方法可接收两个函数作为参数
       - .then方法必须返回一个Promise对象（默认返回自己本身）
       - Promise必须实现.catch()方法，可接收一个函数作为参数
 
-  - proxy 代理
-  - async、await
-  - class类
-  - 模块化 export、import
-  - Set、Map
+  - generator
+    - `yield`: 暂停代码
+    - `next()`: 继续执行代码
+    ```js
+      function* test() {
+        yield '1';
+        yield '2';
+        return 'end';
+      }
+
+      const generator = test();
+
+      generator.next() // { value: '1', done: false }
+      generator.next() // { value: '2', done: false }
+      generator.next() // { value: 'end', done: false }
+      generator.next() // { value: undefined, done: true }
+    ```
+  - `async、await` 是generator的语法糖， babel中是基于promise实现
 
 ### CSS
-- #### 1、BFC/IFC（内联元素格式化上下文）
+- #### 1、link 与 import 的区别
+  - import
+    ```css
+      @import "./assets/reset.less";
+    ```
+  - link
+    ```html
+      <link rel="prefetch" href="/assets/reset.css">
+    ```
+  - 区别：
+    - link可以通过js动态引入
+    - link可以定义`RSS`、`Rel（prefetch）`等作用
+    - 当解析到link时，页面会同步加载所引的 css，而@import所引用的 css 会等到页面加载完才被加载
+- #### 选择器的优先级
+  - `!important` > 行内样式 > `#id` > `.class` > `tag` > * > 继承 > 默认
+
+- #### 2、BFC/IFC（内联元素格式化上下文）
   - BFC
     - 概念：块级格式化上下文
     - 原理（渲染规则）：
@@ -344,10 +376,10 @@
       - BFC是一个独立的容器，内外元素不会互相影响
       - BFC容器计算高度时，内部浮动元素会参与计算（清除浮动的原理）
     - 创建BFC
-      - float 值不为 none
-      - position 值不为 static、relative
-      - display 值为 table、table-cell、inline-block
-      - overflow 值不为 visible
+      - float 值不为 `none`
+      - position 值不为 `static`、`relative`
+      - display 值为 `table`、`table-cell`、`inline-block`
+      - overflow 值不为 `visible`
 
 ### HTML
   - #### 1、canvas 和 svg 的区别
@@ -396,8 +428,8 @@
   - #### 3、JavaScript引擎的执行机制（Event Loop）
     - 机制：JavaScript是一门单线程语言，执行机制是使用Event Loop ( 事件轮询 )
     - js的事件任务可以分为 宏任务(mocro-task) 和 微任务(micro-task)
-      - 宏任务：script、setTimeout、setInterval
-      - 微任务：promise的then方法、process.nextTick
+      - 宏任务：`script`、`setTimeout`、`setInterval`
+      - 微任务：promise的`then`方法、`process.nextTick`
     - 任务执行顺序
       - 首先执行script下的宏任务，遇到setTimeout等宏任务将其放置于宏任务队列中
       - 遇到promise先执行promise方法，然后将then方法放置入微任务队列中
@@ -500,9 +532,9 @@
       - 响应式：vue监听data变化（数据劫持defineProperty 结合 发布者-订阅者模式）
       - 模板引擎：vue的如何解析模板，指令如何处理
         - 模板本质： 字符串
-        - 将 模板 -> render函数（vm._c() 、vm._v()、vm._s()等）_ render函数返回vnode
-        - v-model、v-for （vm._l() 函数）_、v-if等指令
-      - 视图渲染：vue模板如何渲染成html，及渲染过程（通过patch函数初始化渲染及rerender）
+        - 将 模板 -> render函数（`vm._c() `、`vm._v()`、`vm._s()`等）_ render函数返回vnode
+        - v-model、v-for （`vm._l()` 函数）、v-if等指令
+      - 视图渲染：vue模板如何渲染成html，及渲染过程（通过`patch`函数初始化渲染及`rerender`）
 
   - #### 2、数据双向绑定实现原理 [参考](https://segmentfault.com/a/1190000006599500)
     - vue v-model 使用<font color="#d27377">数据劫持(defindeProperty)</font>结合<font color="#d27377">发布者-订阅者模式</font>实现  
@@ -522,17 +554,17 @@
       - 劫持监听所有属性
 
     - DOM初始化渲染，订阅数据变化、绑定更新函数  
-      - 初次渲染，执行 updateComponent，执行 vm._render()_
+      - 初次渲染，执行 updateComponent，执行 `vm._render()`
       - render函数会访问到变量，触发get方法
       - get方法会将变量添加到订阅器中
-      - 执行 updateComponent ，会走到 vdom 的 patch 方法 （patch('app', vm._render()_)）
+      - 执行 updateComponent ，会走到 vdom 的 patch 方法 （`patch('app', vm._render())`）
       - patch 将 vnode 渲染成 DOM，初次渲染完成
 
     - data属性变化，触发rerender更新函数
       - 修改属性，被响应式的 set 监听到
       - set 中触发 updateComponent
-      - updateComponent 重新执行 vm._render()_
-      - 生成的 vnode 和 prevVnode ，通过 patch 进行对比 patch(prevVnode, vnode)
+      - updateComponent 重新执行 `vm._render()`
+      - 生成的 `vnode` 和 `prevVnode` ，通过 patch 进行对比 `patch(prevVnode, vnode)`
       - 重新渲染指定DOM节点到html中
 
   - #### 4、Virtual Dom
