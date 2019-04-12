@@ -27,6 +27,7 @@
 - [JavaScript 秘密花园](http://bonsaiden.github.io/JavaScript-Garden/zh/)
 - [JavaScript 标准参考教程](http://javascript.ruanyifeng.com/)
 - [ECMAScript 6入门](http://es6.ruanyifeng.com/)
+- [Vue技术内幕（源码解读）](http://hcysun.me/vue-design/art/1start-learn.html)
 - [1、webpack部分源码解读](https://github.com/DDFE/DDFE-blog/issues/12)
 - [2、webpack源码解析系列](https://github.com/lihongxun945/diving-into-webpack)
 - [css参考手册](https://wangdoc.com/javascript/)
