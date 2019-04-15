@@ -297,6 +297,42 @@
           (new Imgae()).src = 'url'
         ```
 
+  - #### 10、AJAX
+    - XMLHttpRequest
+      ```js
+        let xmlhttp = null
+        if (window.XMLHttpRequest) {
+          xmlhttp = new XMLHttpRequest()
+        } else if (window.ActiveXObject) {
+          xmlhttp = new ActiveXObject('Microsoft.XMLHTTP')
+        }
+
+        xmlhttp.onreadystatechange = callback
+        xmlhttp.open('GET', url, true)
+        xmlhttp.send(null)
+
+        function callback (res) {
+          if (xmlhttp.readyState == 4) {
+            if (xmlhttp.status == 200) {// 200 = OK
+              // ...our code here...
+            } else {
+              alert("Problem retrieving XML data");
+            }
+          }
+        }
+      ```
+    - fetch
+      ```js
+        fetch(url, {
+          method: 'get',
+          headers: { 'X-Token': 'fe9' }
+        }).then(res => {
+          // Result
+        }).catch(err => {
+          // Error
+        })
+      ```
+
 ### ES6常用语法
   - 块级作用域 `let/const`
   - 箭头函数 `map(() => {})`
@@ -783,6 +819,20 @@
     - loader 和 plugin 的区别
       - loader是用来对模块的源代码进行转换，而插件（plugin）目的在于解决 loader 无法实现的其他事。
       - plugin可以在任何阶段调用，能够跨Loader进一步加工Loader的输出，在构建运行期间，触发事件，执行预先注册的回调，使用compilation对象做一些更底层的事情。
+
+    - 常用的loader
+      - babel-loader
+      - vue-loader
+      - url-loader
+      - less/sass-loader
+      - style-loader
+      - eslint-loader
+
+    - 常用的plugin
+      - HtmlPluginWebpack
+      - CopyPluginWebpack
+      - UglifyJsPlugin
+      - BundleAnalyzerPlugin
 
 ### 服务端与网络
   - #### 1、[http协议原理](./http协议/http协议.md)
