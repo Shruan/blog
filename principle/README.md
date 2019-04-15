@@ -422,6 +422,15 @@
     - canvas 是画布，通过JavaScript来绘制，可绘制2D、3D图形，依赖分辨率 适合做动画
     - svg 是矢量图形，是xml的一种元素标签，可以通过操作dom元素的方法来控制，不会根据大小尺寸的变化而影响分辨率
 
+  - #### 2、在HTML代码嵌入 SVG 代码
+    ```html
+      <body>
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+          <circle cx="100" cy="100" r="50" stroke="blank" stroke-width="2" fill="2" />
+        </svg>
+      </body>
+    ```
+
 ### 浏览器
   - #### 1、浏览器事件流
     - 事件冒泡
@@ -826,6 +835,8 @@
       - url-loader
       - less/sass-loader
       - style-loader
+      - css-loader
+      - postcss-loader
       - eslint-loader
 
     - 常用的plugin
