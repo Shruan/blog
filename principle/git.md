@@ -15,7 +15,8 @@
 - 切换分支：git checkout
 - 创建并切换分支：git checkout -b
 - 合并某分支到当前分支：git merge
-- 把分支推送到远程：git push origin
+- 把分支推送到远程：git push origin branchName
+- 连接远程分支：git branch --set-upstream-to=origin/branchName
 - 删除本地分支：git branch (-d | -D)
 - 删除远程分支：git push origin -d
 - 分支重命名：git branch (-m | -M)
